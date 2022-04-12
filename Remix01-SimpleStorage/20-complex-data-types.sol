@@ -16,6 +16,8 @@ contract SimpleStorage {
     Person newPerson = Person(172, "Satoshi");
     // Alternatively, you pass something looks like a JS object into the "constructor":
     Person newPerson2 = Person({favNum: 172, name: "Satoshi"});
+    // Access children variables like a JS object
+    string personName = newPerson.name;
 
 
     /* Arrays: strong typing so an array is defined with types */
@@ -31,13 +33,14 @@ contract SimpleStorage {
     function addPerson(uint _favNum, string memory _name) public {
         people.push(Person(_favNum, _name));
     }
-    /* Reference type & the "memory" keyword */
+    /* Reference type & data location */
     // Arrays (incl. string and bytes), structs and mappings are REFERENCE TYPES
     //      - They are passed by reference but that can be modified /******* really? *****/
     //      - strings and bytes are special types of array in Solidity
     // The simpler types, e.g. uint, bool, are VALUE TYPES and are always passed by values
     //
-    // !! Whenever you pass a refernece type into a function, or return a reference type, you ALWAYS need to tell Solidity where to store it
+    // Reference type variables defined in contract global scope are STATE variables so they have "storage" location
+    // In anywhere else, you ALWAYS need to tell Solidity where to store it
     // Options:
     //      - memory (persist in the lifetime of the function call)
     //      - storage (persist even after the function call)

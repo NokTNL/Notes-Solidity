@@ -9,42 +9,47 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "a",
+						"name": "_favNum",
 						"type": "uint256"
 					},
 					{
-						"internalType": "uint256",
-						"name": "b",
-						"type": "uint256"
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
 					}
 				],
-				"name": "addNum",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "pure",
+				"name": "addPerson",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "favUnsignedNum",
-				"outputs": [
+				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "_favNum",
 						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
 					}
 				],
-				"stateMutability": "view",
+				"name": "addPersonWithMap",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "retrieve",
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "nameToNum",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -59,13 +64,24 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_favNum",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"name": "store",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "people",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "favNum",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -82,7 +98,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Remix01-SimpleStorage/10-basics-variables-functions.sol": "SimpleStorage"
+			"Remix01-SimpleStorage/20-complex-data-types.sol": "SimpleStorage"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -96,12 +112,11 @@
 		"remappings": []
 	},
 	"sources": {
-		"Remix01-SimpleStorage/10-basics-variables-functions.sol": {
-			"keccak256": "0xfa8fe1bfa09f1c76d8b739f7c3fd9a4ba4df40ac8ec2dab5c463563315359272",
-			"license": "MIT",
+		"Remix01-SimpleStorage/20-complex-data-types.sol": {
+			"keccak256": "0x7227e44e48abed38ad8f398711236e9209b8bfb2fad9d3e26963876f73ec07f9",
 			"urls": [
-				"bzz-raw://da804466770a4af78ea01e02b9dcbea095aee498cbf1c4ba81906107c6897452",
-				"dweb:/ipfs/QmaczxpxUXeoEhL2D2Dx44K4fuB67YMQm9BDG4wEX2UuMY"
+				"bzz-raw://9d952359f49aced4d58cdf404dd4a0861aefcc0c37320183090e6449fd820c22",
+				"dweb:/ipfs/QmPzAFUakr4FuL6APghkJ8Lk4TrS5N73Wxyd5X4wZupSLH"
 			]
 		}
 	},
