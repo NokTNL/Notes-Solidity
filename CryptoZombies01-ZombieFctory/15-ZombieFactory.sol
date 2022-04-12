@@ -27,6 +27,7 @@ contract ZombieFactory {
     // Add a new zombie into the Zombies array, given name and DNA
     function _createZombie(string memory _name, uint _dna) private {
         // array.push returns the latest LENGTH of the array
+        // !!! Not true anymore from 0.6.0, access array length using array.length
         uint id = zombies.push(Zombie(_name, _dna)) - 1;
         emit NewZombie(id, _name, _dna);
     }

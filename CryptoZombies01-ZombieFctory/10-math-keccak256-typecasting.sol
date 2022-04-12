@@ -10,7 +10,6 @@ contract ZombieFactory {
     /* hashing by keccak256 */
     // It accepts bytes type input and returns bytes32 hex number
     // !! Don't rely on it as a secure random number gen in real world application
-    bytes32 public myHash = keccak256("cat");
     // A typical use: pack multiple strings into a single (dynamic) bytes and hash it with keccak256
     bytes32 public myHash2 = keccak256(abi.encodePacked("abcs", "asidajs43BBI"));
 

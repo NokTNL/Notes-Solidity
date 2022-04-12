@@ -44,7 +44,7 @@ contract SimpleStorage {
     //      - functions ALWAYS need to have visibility stated (at least for version ^0.6.0)
     //          - Even if some versions have a default visibility, it is good practice to always specifying it ...
     //          ... and set a function to private/internal if not meant to be public
-    //      - By convention, private function is has a leading "_"
+    //      - By convention, private function has a leading "_"
     // ** a VARIABLE can also be declared public ("internal" by default)
     //      - visibility modifiers for variabels are BETWEEN type and indentifier
     //      - a public *getter* function will be auto-generated to access a public variable's value
