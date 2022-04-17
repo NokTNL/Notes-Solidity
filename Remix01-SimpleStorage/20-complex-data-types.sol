@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
 contract SimpleStorage {
@@ -33,25 +34,20 @@ contract SimpleStorage {
     function addPerson(uint _favNum, string memory _name) public {
         people.push(Person(_favNum, _name));
     }
-    /* Reference type & data location */
+    /* Reference types vs Value types */
     // Arrays (incl. string and bytes), structs and mappings are REFERENCE TYPES
-    //      - They are passed by reference but that can be modified /******* really? *****/
+    //      - They are passed by reference by default (but that can be modified, see "Data location" below)
     //      - strings and bytes are special types of array in Solidity
     // The simpler types, e.g. uint, bool, are VALUE TYPES and are always passed by values
-    //
-    // Reference type variables defined in contract global scope are STATE variables so they have "storage" location
-    // In anywhere else, you ALWAYS need to tell Solidity where to store it
-    // Options:
-    //      - memory (persist in the lifetime of the function call)
-    //      - storage (persist even after the function call)
-    //      - calldata
-    // - we used "memory" above so the string will be passed by VALUE /****** WHY? */
-    /******** Need more explanantion on this **********/
 
-    /************ I don't know why doing this here gives me compile error: */
-    /* Person satoshi = Person(172, "Satoshi");
-    people.push(satoshi);
-     */
+    /* Data location of different types */
+    // - In a contract, state variables have *storage* location
+    //      - Storage variables live forever on the blockchain
+    // - In a function (contract method), incl. arguments:
+    //      - VALUE-TYPE variables always have *memory* location, i.e. only live during the lifetime of that function call
+    //      - REFERENCE TYPE declaration needs to have its location stated EXPLICITLY
+    //          - if "storage", it will be passed by REFERENCE and any change to it will persist and affects all references to it
+    //          - if "memory", it will be passed by value and only this copy will be altered if doing anything to it
 
     /* Mappings */
     // Functionally a lookup table and syntactically similar to JS objects

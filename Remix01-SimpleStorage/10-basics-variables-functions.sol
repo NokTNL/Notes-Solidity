@@ -71,5 +71,9 @@ contract SimpleStorage {
         return a + b;
     }
 
+    // !!!! A contract is similar to a class. Therefore, if can only contain FIELDS and METHODS declarations
+    // Operations like assignment is not allowed:
+    // uint test;
+    // test = 5; --> throws error saying "Expected identifier"
 }
 
