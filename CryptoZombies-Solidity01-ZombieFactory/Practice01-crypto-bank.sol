@@ -52,7 +52,8 @@ contract CryptoBank {
         accounts[id - 1].accountWei = _newAmount;
     }
 
-    // Delete an account by setting that array element back to zero (so the id's order is not disturbed)
+    // Delete an account by setting that array element back to zero (id's order is not disturbed)
+    // !!!! Remix estimates the wrong amount of gas needed in this function!!!
     function deleteAccount(string memory _name) public {
         uint256 id = nameToAccountIndex[_name];
         if (id == 0) {return;}

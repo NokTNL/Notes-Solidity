@@ -20,7 +20,7 @@ contract SecureBank {
     // Withdraw fund
     function withdraw(uint _amount) public {
         // Can't withdraw if not having enough fund!!
-        require(_accounts[msg.sender] >= _amount);
+        require(_accounts[msg.sender] >= _amount, "You don't have enough fund to withdraw");
         _accounts[msg.sender] -= _amount;
     }
 }

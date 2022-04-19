@@ -58,7 +58,7 @@ contract SimpleStorage {
     // !! Whenever you deploy a contract or make any state change ...
     // (e.g. running the function above that changes your contract's variable), it will incure a transaction and gas must be spent
 
-    // However, "view" or "pure" functions does not change any contract states and does not place a new transaction
+    // However, "view" or "pure" functions does not change any contract states and does not place a new transaction (no gas spent!)
     //      - "view" functions only read states but not changing states
     //      - "pure" functions cannot read states (e.g. pass some arguments into it and do math operations only based on what you passed in)
     // In Remix, view/pure functions has a blue button in the contract

@@ -3,7 +3,6 @@ pragma solidity ^0.6.0;
 
 contract SimpleStorage {
     /* Structs: creates a new COMPOSITE data type */
-    // It is functionally very *similar* to classes
     // !!! each sub-data type definition ends with SEMI-COLON, not COMMA !!
     // ** Convention: use UpperCamelCase for structs
     struct Person {
@@ -13,7 +12,8 @@ contract SimpleStorage {
     // children in a struct will be assigned indexes, e.g. 0: favNum, 1: string
     // This can be seen if you try to call the variable, e.g. if you call the Person's below
 
-    // To declare a new variable of struct type, you declare the struct type on the left, and its "constructor" on the right:
+    // To declare a new variable of struct type, you declare the struct type on the left, and its "constructor-ish" expression on the right:
+    // !!! but no "new" keyword bc. its not really a constructor!
     Person newPerson = Person(172, "Satoshi");
     // Alternatively, you pass something looks like a JS object into the "constructor":
     Person newPerson2 = Person({favNum: 172, name: "Satoshi"});
@@ -31,9 +31,17 @@ contract SimpleStorage {
     Person[] public people;
 
     /* Array methods */
+    /* push(x) */
     function addPerson(uint _favNum, string memory _name) public {
         people.push(Person(_favNum, _name));
     }
+    /* Deleting an array element */
+    // Use pop() (which "delete"s the element eventually); or "delete array[index]", which is essentially assigning a zero-value to that element
+    // Using mapping may be better if deleting an element in the future
+    function deletePerson(uint _index) public {
+        delete people[_index];
+    }
+
     /* Reference types vs Value types */
     // Arrays (incl. string and bytes), structs and mappings are REFERENCE TYPES
     //      - They are passed by reference by default (but that can be modified, see "Data location" below)
@@ -48,6 +56,10 @@ contract SimpleStorage {
     //      - REFERENCE TYPE declaration needs to have its location stated EXPLICITLY
     //          - if "storage", it will be passed by REFERENCE and any change to it will persist and affects all references to it
     //          - if "memory", it will be passed by value and only this copy will be altered if doing anything to it
+    //              - There is thirs location: "calldata", which is like memory but:
+    //                  - non-modifiable
+    //                  - only for parameters
+    //                  - only avalaible to external functions
 
     /* Mappings */
     // Functionally a lookup table and syntactically similar to JS objects

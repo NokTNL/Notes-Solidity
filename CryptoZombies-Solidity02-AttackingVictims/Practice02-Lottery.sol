@@ -15,7 +15,8 @@ contract Lottery is SecureBank {
         // Can't place a bet if:
         // 1. not enough fund in its account, or;
         // 2. has placed a bet before
-        require( viewFund() >= _betAmount && hasAddrPlacedBet[msg.sender] == false );
+        require( viewFund() >= _betAmount, "Not enough fund in your account");
+        require( hasAddrPlacedBet[msg.sender] == false, "You have placed a bet before already! Only one bet allowed for each address");
 
         // Deduct the bet amount
         withdraw(_betAmount);
