@@ -1,2 +1,1 @@
-The main learning content is in the Rmix folders, following Patrick Collins' youtube tutorial
-The CryptoZombies one act as supplement
+Each `CryptoZombies` folder correspond to one [Cryptozombies](https://cryptozombies.io/) lesson. The [Patrick Collins' youtube tutorial](https://www.youtube.com/watch?v=M576WGiDBdQ) acts as a supplement.
