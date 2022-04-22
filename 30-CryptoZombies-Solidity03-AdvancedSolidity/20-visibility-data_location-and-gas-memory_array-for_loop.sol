@@ -5,7 +5,11 @@ import "./ownable.sol";
 
 contract Tutorial is Ownable {
     /* "view" functions for complex lookup */
-    // "view" functions called INTERNALLY still costs gas
+    // "view" functions called INTERNALLY still costs
+    // Reason:
+    // - External call on "view" functions has nothing to do to validating a new block. You can view it million times, at different time points, and the blockchain state is still the same.
+    // - However, a contract's function makes an internal call on a view function (e.g. checking a "price" state) often to rely on it for further operations (e.g. deduct amount from an address), and is potentially state-changing.
+    // - The blockchain needs to make sure that call is done exactly the same on different nodes. Therefore, it needs to invovle transactions
     // Therefore, make computationally expensive lookup function "external view" to save gas
 
     /* Memory array in functions */

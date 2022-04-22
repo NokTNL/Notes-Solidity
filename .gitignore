@@ -1,1 +1,7 @@
 artifacts
+.*
+!.gitignore
+
+# Temporary
+CryptoZombies-Solidity05-ERC721-Collectibles
+CryptoZombies-Solidity06-Frontend
