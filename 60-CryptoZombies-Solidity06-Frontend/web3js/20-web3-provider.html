@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Include web3.js here -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script type="module">
+      // First of all, you need a Web3 Provider (i.e. Ethereum Node) to read/write data on blockchain
+      // You can set up your own node, or you can use Infura
+      // !!! You need to register to get free Infura API keys
+
+      /* Why use a new instance instead of just the URL? */
+      // Instantiate an new Web3 object
+      // You need to tell web3.js what Web3 provider that new Web3 object will bear
+      // To do this, pass either of the below into its constructor:
+      // - the node's URL, or
+      // - a new "Web.providers.WebsocketProvider" ( or .HttpProvider) object
+      const web3_test = new Web3(
+        new Web3.providers.WebsocketProvider(
+          "wss://mainnet.infura.io/ws/v3/369b266e89a446aaaea18525cbc45219"
+        )
+      );
+
+      /* Browser Wallets (e.g. MetaMask) */
+      // Metamasks helps you to:
+      // - manage your private keys (you just need a memorisable password to login to the wallet)
+      // - provide you a Web3 provider (via Infura)
+      // How Metamasks gives a provider is to register this in the global "Web3" JS object in the browser
+      // You can access the given provider using Web3.givenProvider
+      // Assuming the browser may have been given, you can use the given one, or assign one if none provided:
+      const web3 = new Web3(
+        Web3.givenProvider ??
+          "wss://mainnet.infura.io/ws/v3/369b266e89a446aaaea18525cbc45219"
+      );
+
+      // You can check the Chain ID like this
+      // Note: getChainId() returns a Promise
+      // e.g. 1 for mainnet, 4 for Rinkeby
+      console.log(await web3.eth.getChainId());
+    </script>
+  </body>
+</html>

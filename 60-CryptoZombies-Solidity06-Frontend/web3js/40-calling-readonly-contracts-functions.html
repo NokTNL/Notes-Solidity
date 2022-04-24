@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script type="module">
+      import { metadata } from "./TimeLimitedLottery_metadata.js";
+      const { abi: lotteryAbi } = metadata?.output;
+
+      const web3 = new Web3(
+        Web3.givenProvider ??
+          "wss://mainnet.infura.io/ws/v3/369b266e89a446aaaea18525cbc45219"
+      );
+
+      /* Communicating with contracts */
+      // To communicate to a deployed contract, you need
+      // 1. its ABI
+      // 2. its address
+
+      // ABI
+      // An ABI JSON file is produced when a contract is compiled and deployed
+      // Example: https://web3js.readthedocs.io/en/v1.7.3/glossary.html
+      // It's an interface that tells web3.js how to communicate with the contract
+      // ** An ABI of the TimeLimitedLottery contract from "50-..." folder is imported here as an example
+      //  - the contract was deployed on Rinkeby with address "0x893E95e4A02D56Af2B7Bfa4386D9B7F583C1C4B6"
+
+      // Then, instantiate an smart contract OBJECT using web3.js to interact with it
+      // - ABI should be a *JavaScript Object* that holds parsed JSON data
+      // - The address should be a *String*
+      const lotteryContract = new web3.eth.Contract(
+        lotteryAbi,
+        "0x893E95e4A02D56Af2B7Bfa4386D9B7F583C1C4B6"
+      );
+      // To see what methods our contract have:
+      console.log(lotteryContract.methods);
+
+      /* Calling read-only contract functions */
+
+      // Contract.methods.<method-name>([params]).call(): call view or pure functions
+      // call() will return a PROMISE
+      // e.g. if the contract has a "usdToWei" method:
+      const weiResult = await lotteryContract.methods.usdToWei(10).call();
+      console.log(
+        `10 USD is equivalent to ${weiResult} wei now according to Chainlink Oracle`
+      );
+
+      // !!! The above does not have (and does not need) a msg.sender. web3.js defaults to use address(0)
+      // You can set a msg.sender using the "option" object in call()
+      // - Note: it is the same kind of "txObject" you will use in later notes
+      const fund = await lotteryContract.methods.playerViewFund().call(
+        //
+        { from: "0x87E7899Ce00c6316E2355BB59EaF1AD358DE95c3" }
+      );
+      console.log(
+        `Address 0x87E7899Ce00c6316E2355BB59EaF1AD358DE95c3 has ${fund} wei deposited`
+      );
+    </script>
+  </body>
+</html>

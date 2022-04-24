@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script type="module">
+      const web3 = new Web3(
+        Web3.givenProvider ??
+          "wss://mainnet.infura.io/ws/v3/369b266e89a446aaaea18525cbc45219"
+      );
+
+      /* Checking account balance */
+      // Provide the address in STRING format
+      const accountAddr = "0x893E95e4A02D56Af2B7Bfa4386D9B7F583C1C4B6";
+      const balance = await web3.eth.getBalance(accountAddr);
+      // web3 has "utilities" that help you convert units:
+      console.log(web3.utils.fromWei(balance, "ether")); // will convert from wei to ether
+    </script>
+  </body>
+</html>
