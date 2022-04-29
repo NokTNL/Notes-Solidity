@@ -15,19 +15,6 @@ contract ZombieFactory {
         addrToNum[msg.sender] = _favNum;
     }
 
-    /* "require": function will throw and terminate execution if a condition is not met */
-    // You can also leave an optional string message if the require statement throws
-
-    function sayHiToVitalik(string memory _name) public pure returns (string memory) {
-
-        // Example: compares if _name equals "Vitalik". Throws an error and exits if not true.
-        // (Side note: Solidity doesn't have native string comparison, so we
-        // compare their keccak256 hashes to see if the strings are equal. see below)
-        require(keccak256(abi.encodePacked(_name)) == keccak256(abi.encodePacked("Vitalik")), "Who are you talking to?");
-        // If it's true, proceed with the function:
-        return "Hi!";
-    }
-
     /* Handling multiple return values */
     // It is very much like JS's destructuring assignment for arrays
     function multipleReturns() internal pure returns(uint a, uint b, uint c) {
