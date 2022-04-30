@@ -29,14 +29,15 @@ contract Tutorial {
         // - There is also an "address payable" type. It is the same as "address" except:
         //      - It can RECEIVE ether, normal addresses can't
         //      - it has the transfer() member functions ( also send(), but this is low-level)
-        // To send ether from this contract back to the msg.sender (which has "address payable" built-in type) :
-        msg.sender.transfer(address(this).balance);
+        // To send ether from this contract back to the msg.sender, you need to explicitly convert it into a payable address:
+        payable(msg.sender).transfer(address(this).balance);
     //  ^ether sink
+        // !! Before 0.8.0, msg.sender used to be payable by default.
     }
 
     /* constructor() */
-    // constructor declaration is optional. If none specified, default to "constructor() public {}".
-    // !! Prior to ^0.7.0, constrcutor needs public or internal visibility. Dropped after 0.7.0.
-    //  - internal constructor cannot be called externally to instantiate a new contract
+    // - constructor declaration is optional. If none specified, default to "constructor() public {}".
+    // !! Prior to ^0.7.0, constrcutor needs public or internal visibility. Since 0.7.0, you SHOULD NOT add visibility to a constructor.
+    // - internal constructor cannot be called externally to instantiate a new contract
     //     (e.g. you can't deploy it directly in Remix and will say it is an "abstract contract") 
 }
